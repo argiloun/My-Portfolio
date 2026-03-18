@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"/c/Users/argil/Desktop/Zenbook/My Files/My-logo.png\" \"/c/Users/argil/.claude/Website Portfolio/logo.png\")",
+      "Bash(cp \"/c/Users/argil/Desktop/Zenbook/My Files/Content/Profile Pic/Profile pic square.png\" \"/c/Users/argil/.claude/Website Portfolio/profile.png\")",
+      "Bash(start \"\" \"C:\\\\Users\\\\argil\\\\.claude\\\\Website Portfolio\\\\index.html\")",
+      "Bash(npx --version)",
+      "Bash(php --version)",
+      "Bash(cmd.exe /c \"where node 2>nul && where npx 2>nul && where npm 2>nul\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(/c/Users/argil/AppData/Local/Microsoft/WindowsApps/python3 -c \"print\\(''hello''\\)\")",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(powershell.exe -Command \"Get-Process -Name powershell -ErrorAction SilentlyContinue | Where-Object { $_.Id -ne $PID } | Stop-Process -Force\")",
+      "Bash(curl -s http://localhost:5555/)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -NoProfile -Command \"& { try { $listener = New-Object System.Net.HttpListener; $listener.Prefixes.Add\\(''http://localhost:5555/''\\); $listener.Start\\(\\); Write-Host ''OK''; $listener.Stop\\(\\) } catch { Write-Host \"\"ERROR: $_\"\" } }\")",
+      "Bash(taskkill //F //PID 178)",
+      "Bash(powershell.exe -Command \"Stop-Process -Id 178 -Force -ErrorAction SilentlyContinue; Get-NetTCPConnection -LocalPort 5555 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }\")",
+      "Bash(kill -9 178)",
+      "Bash(kill -9 180)",
+      "WebFetch(domain:vimeo.com)",
+      "WebFetch(domain:player.vimeo.com)",
+      "Bash(where npm.cmd)",
+      "Bash(where node.exe)",
+      "Bash(where npx.cmd)",
+      "Bash(where node:*)",
+      "Bash(cmd.exe /c \"where node\")",
+      "Bash(cmd.exe /c \"where npx\")",
+      "Bash(cmd.exe /c \"where php\")",
+      "Bash(ls /c/Python*/python.exe)",
+      "Read(//c/Users/argil/AppData/Local/Programs/**)",
+      "Bash(powershell.exe -Command \"Get-Command npx -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\")",
+      "Bash(powershell.exe -Command \"Get-Command npm -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\")",
+      "Bash(winget install:*)",
+      "Bash(ls -la \"C:\\\\Users\\\\argil\\\\.claude\\\\Website Portfolio\"/*.html \"C:\\\\Users\\\\argil\\\\.claude\\\\Website Portfolio\"/*.bak)"
+    ]
+  }
+}
