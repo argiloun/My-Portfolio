@@ -645,6 +645,22 @@
             pointer-events: none;
         }
 
+        .about-heading {
+            margin-bottom: 3rem;
+        }
+
+        .about-heading .section-label {
+            margin-bottom: 0.5rem;
+        }
+
+        .about-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 300;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
         .about-grid {
             display: grid;
             grid-template-columns: 300px 1fr;
@@ -660,51 +676,42 @@
             border: 1px solid var(--border);
         }
 
-        .about-content h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            letter-spacing: 0.06em;
-            margin-bottom: 0.3rem;
-        }
-
-        .about-content .section-sublabel {
-            margin-bottom: 1.5rem;
-        }
-
         .about-bio {
             font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2rem;
+            line-height: 1.85;
+            margin-bottom: 1.5rem;
         }
 
-        .about-highlights {
+        .about-bio strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .about-dots {
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
         }
 
-        .highlight-item {
-            text-align: center;
-            padding: 1rem 1.5rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .highlight-number {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 0.3rem;
-        }
-
-        .highlight-label {
-            font-size: 0.75rem;
+        .about-dot-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+        }
+
+        .about-dot-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
         }
 
         /* ── SKILLS SECTION ── */
@@ -1505,27 +1512,26 @@
     <!-- ABOUT -->
     <section class="about-section" id="about">
         <div class="container">
+            <div class="about-heading reveal">
+                <div class="section-label" style="font-size: 0.85rem; color: var(--accent); letter-spacing: 0.15em; font-family: 'Inter', sans-serif; font-weight: 500;">ABOUT</div>
+                <h2 class="about-title">Crafting stories<br>through motion.</h2>
+            </div>
             <div class="about-grid reveal">
                 <img src="profile.png" alt="Argiris" class="about-image">
                 <div class="about-content">
-                    <h2>ABOUT</h2>
-                    <p class="section-sublabel">The person behind the work.</p>
                     <p class="about-bio">
-                        I'm Argiris, a video editor and motion designer based in Amsterdam. For over five years, I've been helping brands, creators, and businesses bring their ideas to life through compelling visual storytelling. From cinematic edits and dynamic motion graphics to polished social media content, I approach every project with an eye for detail and a passion for craft. I work remotely with clients around the world, combining technical expertise with creative intuition to deliver work that resonates.
+                        My name is <strong>Argiris</strong>, and I am a Video Editor and Motion Designer. I have worked with both local businesses in Greece and international clients, delivering high-quality video and motion content across a wide range of projects.
                     </p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <div class="highlight-number">5+</div>
-                            <div class="highlight-label">Years Experience</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-number">200+</div>
-                            <div class="highlight-label">Projects</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-number">&#127758;</div>
-                            <div class="highlight-label">Remote Worldwide</div>
-                        </div>
+                    <p class="about-bio">
+                        I am a strong team player and an effective communicator, with extensive experience working remotely in fast-paced, collaborative environments. Through freelance platforms such as Fiverr, I have successfully completed projects for <strong>over 200 clients worldwide</strong>, maintaining a <strong>5-star rating</strong> across <strong>80+ reviews</strong>.
+                    </p>
+                    <p class="about-bio">
+                        I am committed to consistently delivering results that meet — and exceed — client expectations.
+                    </p>
+                    <div class="about-dots">
+                        <span class="about-dot-item">Remote & On-site</span>
+                        <span class="about-dot-item">Greece & Netherlands</span>
+                        <span class="about-dot-item">Fast Turnaround</span>
                     </div>
                 </div>
             </div>
