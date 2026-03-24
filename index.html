@@ -27,7 +27,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            /* scroll handled by JS for smoother easing */
         }
 
         body {
@@ -70,7 +70,7 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 2rem;
-            overflow: hidden;
+            overflow: visible;
         }
 
         /* ── NAV ── */
@@ -85,15 +85,26 @@
             align-items: center;
             justify-content: space-between;
             background: transparent;
-            border-bottom: 1px solid transparent;
-            transition: padding 0.3s ease, background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+            border-bottom: none;
+            transition: padding 0.3s ease, background 0.4s ease, backdrop-filter 0.4s ease;
         }
 
         .nav.scrolled {
-            background: rgba(10, 10, 10, 0.6);
+            background: rgba(17, 17, 17, 0.5);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: none;
+        }
+
+        .nav.scrolled::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+            background-size: 128px 128px;
+            pointer-events: none;
+            opacity: 0.5;
         }
 
         .nav-logo {
@@ -246,7 +257,7 @@
             width: clamp(145.5px, 20.4vw, 232.8px);
             opacity: 0;
             animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-            margin-bottom: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .hero-text-block {
@@ -317,7 +328,7 @@
         /* ── STATS ── */
         .stats-section {
             padding: 4rem 0;
-            border-bottom: 1px solid var(--border);
+            border-bottom: none;
         }
 
         .stats-grid {
@@ -424,8 +435,24 @@
             transition: box-shadow 0.4s ease;
         }
 
+        .showreel-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 10;
+            pointer-events: none;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+        }
+
         .showreel-wrapper:hover {
-            box-shadow: 0 0 40px rgba(228, 255, 51, 0.15), 0 0 80px rgba(228, 255, 51, 0.05);
+            box-shadow: 0 0 30px rgba(228, 255, 51, 0.5), 0 0 60px rgba(228, 255, 51, 0.3), 0 0 120px rgba(228, 255, 51, 0.15);
+        }
+
+        .showreel-wrapper:hover::after {
+            opacity: 1;
         }
 
         .showreel-wrapper .video-embed {
@@ -492,17 +519,16 @@
         }
 
         .portfolio-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
+            background: transparent;
+            border-radius: 0;
+            overflow: visible;
+            border: none;
             cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .portfolio-card:hover {
             transform: scale(1.02);
-            border-color: var(--text-muted);
         }
 
         .card-thumbnail {
@@ -511,6 +537,7 @@
             position: relative;
             overflow: hidden;
             background: var(--bg-light);
+            border-radius: 12px;
         }
 
         .card-thumbnail img {
@@ -552,7 +579,7 @@
         }
 
         .card-info {
-            padding: 1rem 1.2rem;
+            padding: 0.75rem 0.2rem 0;
         }
 
         .card-title {
@@ -579,14 +606,14 @@
         }
 
         .short-form-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
+            background: transparent;
+            border-radius: 0;
+            overflow: visible;
+            border: none;
             cursor: pointer;
             min-width: 0;
             max-width: 100%;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .short-form-card img {
@@ -596,15 +623,15 @@
 
         .short-form-card:hover {
             transform: scale(1.03);
-            border-color: var(--text-muted);
         }
 
         .short-form-thumbnail {
             width: 100%;
-            padding-bottom: 177.78%; /* 16/9 ratio */
+            padding-bottom: 177.78%; /* 9/16 ratio */
             position: relative;
             overflow: hidden;
             background: var(--bg-light);
+            border-radius: 12px;
         }
 
         .short-form-thumbnail img {
@@ -634,7 +661,7 @@
         }
 
         .short-form-card .card-info {
-            padding: 0.8rem 1rem;
+            padding: 0.75rem 0.2rem 0;
         }
 
         /* ── AUDIO EDITING MIXED LAYOUT ── */
@@ -658,17 +685,16 @@
         }
 
         .audio-vertical-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
+            background: transparent;
+            border-radius: 0;
+            overflow: visible;
+            border: none;
             cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .audio-vertical-card:hover {
             transform: scale(1.02);
-            border-color: var(--text-muted);
         }
 
         .audio-vertical-thumbnail {
@@ -677,6 +703,7 @@
             position: relative;
             overflow: hidden;
             background: var(--bg-light);
+            border-radius: 12px;
         }
 
         .audio-vertical-thumbnail img {
@@ -1319,8 +1346,8 @@
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Music Video</div>
-                        <div class="card-subtag">Video Editing</div>
+                        <div class="card-title">Prague</div>
+                        <div class="card-subtag">Travel Cinematic</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="1064368452" data-orientation="horizontal">
@@ -1329,8 +1356,8 @@
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Documentary</div>
-                        <div class="card-subtag">Video Editing</div>
+                        <div class="card-title">How We Make It</div>
+                        <div class="card-subtag">Short Documentary</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="721564598" data-orientation="horizontal">
@@ -1339,8 +1366,8 @@
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">YouTube Series</div>
-                        <div class="card-subtag">Video Editing</div>
+                        <div class="card-title">Photoshoot BTS</div>
+                        <div class="card-subtag">Fashion Brand Video</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="1077371415" data-orientation="horizontal">
@@ -1349,8 +1376,8 @@
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Brand Film</div>
-                        <div class="card-subtag">Video Editing</div>
+                        <div class="card-title">Pet Talks</div>
+                        <div class="card-subtag">Podcast Intro</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="1064302381" data-orientation="horizontal">
@@ -1359,8 +1386,8 @@
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Corporate Recap</div>
-                        <div class="card-subtag">Video Editing</div>
+                        <div class="card-title">Pet Talks Clip</div>
+                        <div class="card-subtag">Podcast Highlight</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="721781636" data-orientation="horizontal">
@@ -1369,8 +1396,8 @@
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Wedding Film</div>
-                        <div class="card-subtag">Video Editing</div>
+                        <div class="card-title">The Artist</div>
+                        <div class="card-subtag">Short Film</div>
                     </div>
                 </div>
             </div>
@@ -1382,7 +1409,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-label">SHORT FORM CONTENT</h2>
-                <p class="section-sublabel">Vertical videos for social media.</p>
+                <p class="section-sublabel">Vertical videos built for performance.</p>
             </div>
             <div class="short-form-scroll reveal">
             <div class="short-form-card" data-vimeo="1062781113" data-orientation="vertical">
@@ -1391,78 +1418,78 @@
                     <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                 </div>
                 <div class="card-info">
-                    <div class="card-title">Instagram Reel</div>
-                    <div class="card-subtag">Short Form</div>
+                    <div class="card-title">Match Finder</div>
+                    <div class="card-subtag">Website Advert</div>
                 </div>
             </div>
             <div class="short-form-card" data-vimeo="1157193874" data-orientation="vertical">
                 <div class="short-form-thumbnail">
-                    <img src="" alt="YouTube Short" data-vimeo-thumb="1157193874">
+                    <img src="" alt="Petchef Anniversary" data-vimeo-thumb="1157193874">
                     <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                 </div>
                 <div class="card-info">
-                    <div class="card-title">YouTube Short</div>
-                    <div class="card-subtag">Short Form</div>
+                    <div class="card-title">Petchef Anniversary</div>
+                    <div class="card-subtag">Brand Short</div>
                 </div>
             </div>
             <div class="short-form-card" data-vimeo="1174132821" data-orientation="vertical">
                 <div class="short-form-thumbnail">
-                    <img src="" alt="Meta Ad" data-vimeo-thumb="1174132821">
+                    <img src="" alt="Now In Cyprus" data-vimeo-thumb="1174132821">
                     <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                 </div>
                 <div class="card-info">
-                    <div class="card-title">Meta Ad</div>
-                    <div class="card-subtag">Short Form</div>
+                    <div class="card-title">Now In Cyprus</div>
+                    <div class="card-subtag">Brand Content</div>
                 </div>
             </div>
             <div class="short-form-card" data-vimeo="1064296855" data-orientation="vertical">
                 <div class="short-form-thumbnail">
-                    <img src="" alt="TikTok Edit" data-vimeo-thumb="1064296855">
+                    <img src="" alt="Client Reviews" data-vimeo-thumb="1064296855">
                     <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                 </div>
                 <div class="card-info">
-                    <div class="card-title">TikTok Edit</div>
-                    <div class="card-subtag">Short Form</div>
+                    <div class="card-title">Client Reviews</div>
+                    <div class="card-subtag">Brand Content</div>
                 </div>
             </div>
             <div class="short-form-card" data-vimeo="1064506871" data-orientation="vertical">
                 <div class="short-form-thumbnail">
-                    <img src="" alt="Promo Reel" data-vimeo-thumb="1064506871">
+                    <img src="" alt="Pet Talks" data-vimeo-thumb="1064506871">
                     <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                 </div>
                 <div class="card-info">
-                    <div class="card-title">Promo Reel</div>
-                    <div class="card-subtag">Short Form</div>
+                    <div class="card-title">Pet Talks</div>
+                    <div class="card-subtag">Podcast Highlights</div>
                 </div>
             </div>
             <div class="short-form-card" data-vimeo="1071837278" data-orientation="vertical">
                 <div class="short-form-thumbnail">
-                    <img src="" alt="Brand Short" data-vimeo-thumb="1071837278">
+                    <img src="" alt="Pet Talks" data-vimeo-thumb="1071837278">
                     <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                 </div>
                 <div class="card-info">
-                    <div class="card-title">Brand Short</div>
-                    <div class="card-subtag">Short Form</div>
+                    <div class="card-title">Pet Talks</div>
+                    <div class="card-subtag">Podcast Highlights</div>
                 </div>
             </div>
             <div class="short-form-card" data-vimeo="1174134402" data-orientation="vertical">
                 <div class="short-form-thumbnail">
-                    <img src="" alt="Event Teaser" data-vimeo-thumb="1174134402">
+                    <img src="" alt="New Facilities" data-vimeo-thumb="1174134402">
                     <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                 </div>
                 <div class="card-info">
-                    <div class="card-title">Event Teaser</div>
-                    <div class="card-subtag">Short Form</div>
+                    <div class="card-title">New Facilities</div>
+                    <div class="card-subtag">Brand Content</div>
                 </div>
             </div>
             <div class="short-form-card" data-vimeo="1174135494" data-orientation="vertical">
                 <div class="short-form-thumbnail">
-                    <img src="" alt="Story Edit" data-vimeo-thumb="1174135494">
+                    <img src="" alt="Cat Recipes" data-vimeo-thumb="1174135494">
                     <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                 </div>
                 <div class="card-info">
-                    <div class="card-title">Story Edit</div>
-                    <div class="card-subtag">Short Form</div>
+                    <div class="card-title">Cat Recipes</div>
+                    <div class="card-subtag">Brand Content</div>
                 </div>
             </div>
         </div>
@@ -1484,8 +1511,8 @@
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Audio Edit 4</div>
-                        <div class="card-subtag">Audio Editing</div>
+                        <div class="card-title">Culinary Dance</div>
+                        <div class="card-subtag">Audio Edit</div>
                     </div>
                 </div>
                 <!-- 4 Vertical cards -->
@@ -1496,8 +1523,8 @@
                             <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                         </div>
                         <div class="card-info">
-                            <div class="card-title">Audio Edit 1</div>
-                            <div class="card-subtag">Audio Editing</div>
+                            <div class="card-title">Lemon Garden</div>
+                            <div class="card-subtag">Short Audio Edit</div>
                         </div>
                     </div>
                     <div class="audio-vertical-card reveal" data-vimeo="1157184642" data-orientation="vertical">
@@ -1506,8 +1533,8 @@
                             <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                         </div>
                         <div class="card-info">
-                            <div class="card-title">Audio Edit 2</div>
-                            <div class="card-subtag">Audio Editing</div>
+                            <div class="card-title">Orange Dive</div>
+                            <div class="card-subtag">Short Audio Edit</div>
                         </div>
                     </div>
                     <div class="audio-vertical-card reveal" data-vimeo="1157186020" data-orientation="vertical">
@@ -1516,8 +1543,8 @@
                             <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                         </div>
                         <div class="card-info">
-                            <div class="card-title">Audio Edit 3</div>
-                            <div class="card-subtag">Audio Editing</div>
+                            <div class="card-title">Cherry Drip</div>
+                            <div class="card-subtag">Short Audio Edit</div>
                         </div>
                     </div>
                     <div class="audio-vertical-card reveal" data-vimeo="1174120592" data-orientation="vertical">
@@ -1526,8 +1553,8 @@
                             <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                         </div>
                         <div class="card-info">
-                            <div class="card-title">Audio Edit 5</div>
-                            <div class="card-subtag">Audio Editing</div>
+                            <div class="card-title">Ginger Lemon</div>
+                            <div class="card-subtag">Short Audio Edit</div>
                         </div>
                     </div>
                 </div>
@@ -1549,58 +1576,58 @@
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Logo Animation</div>
-                        <div class="card-subtag">Motion Design</div>
+                        <div class="card-title">Halloween Animation</div>
+                        <div class="card-subtag">Motion Graphics Short</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="951890961" data-orientation="horizontal">
                     <div class="card-thumbnail">
-                        <img src="" alt="Explainer Video" data-vimeo-thumb="951890961">
+                        <img src="" alt="Cut Outs" data-vimeo-thumb="951890961">
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Explainer Video</div>
-                        <div class="card-subtag">Motion Design</div>
+                        <div class="card-title">Cut Outs</div>
+                        <div class="card-subtag">Motion Graphic Ad</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="1071212274" data-orientation="horizontal">
                     <div class="card-thumbnail">
-                        <img src="" alt="Social Media Ads" data-vimeo-thumb="1071212274">
+                        <img src="" alt="All The Way Up" data-vimeo-thumb="1071212274">
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Social Media Ads</div>
-                        <div class="card-subtag">Motion Design</div>
+                        <div class="card-title">All The Way Up</div>
+                        <div class="card-subtag">Logo Animation</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="1062792164" data-orientation="horizontal">
                     <div class="card-thumbnail">
-                        <img src="" alt="Title Sequence" data-vimeo-thumb="1062792164">
+                        <img src="" alt="Black Friday" data-vimeo-thumb="1062792164">
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Title Sequence</div>
-                        <div class="card-subtag">Motion Design</div>
+                        <div class="card-title">Black Friday</div>
+                        <div class="card-subtag">Motion Graphics</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="1062782757" data-orientation="horizontal">
                     <div class="card-thumbnail">
-                        <img src="" alt="Infographic Animation" data-vimeo-thumb="1062782757">
+                        <img src="" alt="Thessaloniki" data-vimeo-thumb="1062782757">
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">Infographic Animation</div>
-                        <div class="card-subtag">Motion Design</div>
+                        <div class="card-title">Thessaloniki</div>
+                        <div class="card-subtag">Brand Animation</div>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" data-vimeo="1064306456" data-orientation="horizontal">
                     <div class="card-thumbnail">
-                        <img src="" alt="UI Animation" data-vimeo-thumb="1064306456">
+                        <img src="" alt="Happy Easter" data-vimeo-thumb="1064306456">
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                     </div>
                     <div class="card-info">
-                        <div class="card-title">UI Animation</div>
-                        <div class="card-subtag">Motion Design</div>
+                        <div class="card-title">Happy Easter</div>
+                        <div class="card-subtag">Brand Animation</div>
                     </div>
                 </div>
             </div>
@@ -1773,15 +1800,15 @@
             </div>
             <div class="expertise-tags reveal">
                 <span class="expertise-tag">Video Editing</span>
-                <span class="expertise-tag">Motion Graphics</span>
-                <span class="expertise-tag">Color Grading</span>
-                <span class="expertise-tag">Sound Design</span>
-                <span class="expertise-tag">Storytelling</span>
-                <span class="expertise-tag">Social Media Content</span>
-                <span class="expertise-tag">Brand Identity</span>
-                <span class="expertise-tag">Typography</span>
-                <span class="expertise-tag">Photography</span>
-                <span class="expertise-tag">Bilingual &mdash; English &amp; Greek</span>
+                <span class="expertise-tag">Graphic Design</span>
+                <span class="expertise-tag">Animation</span>
+                <span class="expertise-tag">English Proficiency (Bilingual)</span>
+                <span class="expertise-tag">Audio Design</span>
+                <span class="expertise-tag">Music Production</span>
+                <span class="expertise-tag">Camera Operation</span>
+                <span class="expertise-tag">Drone Operation</span>
+                <span class="expertise-tag">Studio Lighting</span>
+                <span class="expertise-tag">Audio Equipment Setup &amp; Operation</span>
                 <span class="expertise-tag">AI-Savvy</span>
                 <span class="expertise-tag">Tech-Savvy</span>
             </div>
@@ -1805,6 +1832,10 @@
                     <a href="https://www.linkedin.com/in/argiris-lountras" target="_blank" rel="noopener noreferrer" class="contact-link">
                         <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
                         Argiris Lountras
+                    </a>
+                    <a href="https://www.fiverr.com/s/e62WjLj" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14z" fill="var(--accent)"/><path d="M6 19V9.5C6 7 7.5 5.5 10.5 5.5H13V9h-2c-1 0-1.5.5-1.5 1.5h8v8.5h-3.5v-5.5H9.5V19z" fill="var(--bg)"/><rect x="14.5" y="5.5" width="3.5" height="3.5" fill="var(--bg)"/></svg>
+                        Fiverr
                     </a>
                 </div>
                 <form class="contact-form" onsubmit="return false;">
@@ -1861,6 +1892,27 @@
             });
         });
 
+        // ── SMOOTH ANCHOR SCROLL ──
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (!target) return;
+                const start = window.scrollY;
+                const end = target.getBoundingClientRect().top + start;
+                const duration = 900;
+                let startTime = null;
+                function ease(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
+                function step(time) {
+                    if (!startTime) startTime = time;
+                    const progress = Math.min((time - startTime) / duration, 1);
+                    window.scrollTo(0, start + (end - start) * ease(progress));
+                    if (progress < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            });
+        });
+
         // ── NAV SCROLL EFFECT ──
         const nav = document.querySelector('.nav');
         const sections = document.querySelectorAll('section[id]');
@@ -1909,19 +1961,24 @@
                     const el = entry.target;
                     const target = parseInt(el.dataset.count);
                     const suffix = el.dataset.suffix || '';
-                    const duration = 2000;
-                    const start = performance.now();
+                    const duration = 1500;
+                    // Stagger: offset based on position (0, 300ms, 600ms)
+                    const index = [...document.querySelectorAll('.stat-number[data-count]')].indexOf(el);
+                    const delay = index * 300;
 
-                    function animate(now) {
-                        const elapsed = now - start;
-                        const progress = Math.min(elapsed / duration, 1);
-                        // Ease out cubic
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        const current = Math.round(eased * target);
-                        el.textContent = current + suffix;
-                        if (progress < 1) requestAnimationFrame(animate);
-                    }
-                    requestAnimationFrame(animate);
+                    setTimeout(() => {
+                        const start = performance.now();
+                        function animate(now) {
+                            const elapsed = now - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            // Ease out quart — smoother deceleration
+                            const eased = 1 - Math.pow(1 - progress, 4);
+                            const current = Math.round(eased * target);
+                            el.textContent = current + suffix;
+                            if (progress < 1) requestAnimationFrame(animate);
+                        }
+                        requestAnimationFrame(animate);
+                    }, delay);
                     statObserver.unobserve(el);
                 }
             });
@@ -2009,6 +2066,23 @@
                 closeVideoModal();
             }
         });
+    </script>
+
+    <!-- Lenis smooth scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1.3,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 0.85,
+            touchMultiplier: 1.5
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
     </script>
 </body>
 </html>
