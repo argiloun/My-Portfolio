@@ -1316,41 +1316,60 @@
                 pointer-events: auto;
             }
 
-            .mobile-overlay,
             .mobile-drawer {
+                display: block;
+            }
+
+            .mobile-overlay.active {
                 display: block;
             }
 
             .hero {
                 padding: 3rem 1rem 2rem;
                 min-height: auto;
-                height: 85vh;
+                height: 100vh;
             }
 
             .hero-logo {
-                width: min(90px, 25vw);
+                width: min(115px, 30vw);
             }
 
             .hero-l1,
             .hero-l3 {
-                font-size: clamp(2rem, 10vw, 3.5rem) !important;
+                font-size: clamp(2.6rem, 13vw, 4.5rem) !important;
             }
 
             .hero-l2 {
-                font-size: clamp(1.2rem, 5vw, 2rem) !important;
+                font-size: clamp(1.5rem, 6.5vw, 2.6rem) !important;
             }
 
             .hero-l4 {
-                font-size: clamp(0.9rem, 3.5vw, 1.4rem) !important;
+                font-size: clamp(1.1rem, 4.5vw, 1.8rem) !important;
+            }
+
+            .hero-accent-line {
+                width: 20px;
+                height: 2px;
+                margin: 1rem auto;
             }
 
             .hero-tagline {
                 font-size: 0.7rem;
+                margin-top: 0;
+            }
+
+            .stats-section {
+                padding: 2rem 0;
             }
 
             .stats-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 0.5rem;
+                padding: 0;
+            }
+
+            .stat-item {
+                padding: 0.5rem;
             }
 
             .stat-number {
@@ -1378,6 +1397,12 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
                 padding: 0;
+            }
+
+            .short-form-card {
+                width: 100%;
+                max-width: 150px;
+                margin: 0 auto;
             }
 
             .short-form-card {
@@ -1567,7 +1592,7 @@
                         <div class="card-subtag">Travel Cinematic</div>
                     </div>
                 </div>
-                <div class="portfolio-card reveal" data-vimeo="1064368452" data-orientation="horizontal">
+                <div class="portfolio-card reveal" data-vimeo="1064368452" data-orientation="vertical">
                     <div class="card-thumbnail">
                         <img src="" alt="Documentary" data-vimeo-thumb="1064368452">
                         <div class="card-play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
