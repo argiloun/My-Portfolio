@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Argiris — Video Editor & Motion Designer</title>
     <meta name="description" content="Argiris is a Video Editor & Motion Designer crafting stories through motion. Based in Amsterdam, working worldwide.">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -121,6 +124,8 @@
         .nav-logo img {
             height: 53px;
             width: auto;
+            position: relative;
+            top: 7px;
         }
 
         .nav-links {
@@ -150,6 +155,65 @@
         .nav-links a:hover,
         .nav-links a.active {
             color: var(--accent);
+        }
+
+        .nav-dropdown {
+            position: relative;
+            padding-bottom: 10px;
+            margin-bottom: -10px;
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(0px);
+            background: rgba(22, 22, 22, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 170px;
+            list-style: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            transform: translateX(-50%) translateY(8px);
+            z-index: 1001;
+        }
+
+        .nav-dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 0;
+            right: 0;
+            height: 15px;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0px);
+        }
+
+        .nav-dropdown-menu li {
+            padding: 0;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem !important;
+            color: var(--text-secondary) !important;
+            white-space: nowrap;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-dropdown-menu a:hover {
+            color: var(--accent) !important;
+            background: rgba(228, 255, 51, 0.05);
         }
 
         .hamburger {
@@ -257,7 +321,7 @@
             width: clamp(145.5px, 20.4vw, 232.8px);
             opacity: 0;
             animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-            margin-bottom: 0.5rem;
+            margin-bottom: -0.4rem;
         }
 
         .hero-text-block {
@@ -303,7 +367,7 @@
             font-size: clamp(1.2rem, 2.5vw, 2.25rem);
             color: var(--text-muted);
             letter-spacing: 0.35em;
-            margin-top: 1.2rem;
+            margin-top: 1.8rem;
             animation: heroFadeIn 0.8s ease 0.8s forwards;
         }
 
@@ -311,14 +375,14 @@
             width: 50px;
             height: 3px;
             background: var(--accent);
-            margin: 2rem auto;
+            margin: 2.4rem auto;
             opacity: 0;
             animation: heroFadeIn 0.8s ease 1s forwards;
         }
 
         .hero-tagline {
             font-size: 1.1rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-weight: 300;
             letter-spacing: 0.05em;
             opacity: 0;
@@ -846,25 +910,25 @@
         .skill-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1.2rem;
+            gap: 0.85rem;
+            padding: 1rem;
             background: var(--bg-card);
-            border-radius: 12px;
+            border-radius: 10px;
             border: 1px solid var(--border);
         }
 
         .skill-icon {
             flex-shrink: 0;
-            width: 44px;
-            height: 44px;
+            width: 38px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .skill-icon svg {
-            width: 44px;
-            height: 44px;
+            width: 38px;
+            height: 38px;
         }
 
         .skill-details {
@@ -889,9 +953,9 @@
 
         .skill-bar {
             width: 100%;
-            height: 4px;
+            height: 3px;
             background: var(--border);
-            border-radius: 2px;
+            border-radius: 1.5px;
             overflow: hidden;
         }
 
@@ -972,7 +1036,18 @@
             color: var(--text);
             text-decoration: none;
             font-size: 0.9rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        @keyframes copyPop {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        .contact-link.copied {
+            animation: copyPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: var(--accent);
         }
 
         .contact-link:hover {
@@ -1134,6 +1209,75 @@
             color: var(--accent);
         }
 
+        /* ── GRAPHIC DESIGN GRID ── */
+        .gd-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .gd-grid .gd-item {
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gd-grid .gd-item.gd-tall {
+            grid-row: span 2;
+        }
+
+        .gd-grid .gd-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .gd-grid .gd-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.15);
+        }
+
+        .gd-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            opacity: 0;
+            pointer-events: none;
+            transition: background 0.4s ease, opacity 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gd-lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .gd-lightbox img {
+            max-width: 85vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
+        }
+
+        .gd-lightbox.active img {
+            transform: scale(1);
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
             .nav-links {
@@ -1192,6 +1336,10 @@
                 gap: 1rem;
             }
 
+            .gd-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
             .audio-vertical-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1233,6 +1381,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .gd-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .audio-vertical-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1256,7 +1408,16 @@
         </a>
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#work">Work</a></li>
+            <li class="nav-dropdown">
+                <a href="#work">Work</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="#video-editing">Video Editing</a></li>
+                    <li><a href="#short-form">Short Form</a></li>
+                    <li><a href="#audio-editing">Audio Editing</a></li>
+                    <li><a href="#motion-design">Motion Design</a></li>
+                    <li><a href="#graphic-design">Graphic Design</a></li>
+                </ul>
+            </li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1333,11 +1494,11 @@
     </section>
 
     <!-- VIDEO EDITING -->
-    <section class="portfolio-section">
+    <section class="portfolio-section" id="video-editing">
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-label">VIDEO EDITING</h2>
-                <p class="section-sublabel">Selected projects and collaborations.</p>
+                <p class="section-sublabel">Turning clips into stories.</p>
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-card reveal" data-vimeo="1072852933" data-orientation="horizontal">
@@ -1405,7 +1566,7 @@
     </section>
 
     <!-- SHORT FORM CONTENT -->
-    <section class="portfolio-section">
+    <section class="portfolio-section" id="short-form">
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-label">SHORT FORM CONTENT</h2>
@@ -1497,7 +1658,7 @@
     </section>
 
     <!-- AUDIO EDITING -->
-    <section class="portfolio-section" style="background: #111111; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <section class="portfolio-section" id="audio-editing" style="background: #111111; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-label">AUDIO EDITING</h2>
@@ -1563,7 +1724,7 @@
     </section>
 
     <!-- MOTION DESIGN -->
-    <section class="portfolio-section">
+    <section class="portfolio-section" id="motion-design">
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-label">MOTION DESIGN</h2>
@@ -1634,6 +1795,36 @@
         </div>
     </section>
 
+    <!-- GRAPHIC DESIGN -->
+    <section class="portfolio-section" id="graphic-design">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-label">GRAPHIC DESIGN</h2>
+                <p class="section-sublabel">Visuals that speak before words do.</p>
+            </div>
+            <div class="gd-grid reveal">
+                <!-- Row 1-2 -->
+                <div class="gd-item"><img src="Images-opt/1.jpg" alt="Graphic Design"></div>
+                <div class="gd-item gd-tall"><img src="Images-opt/garmakeio.jpg" alt="Graphic Design"></div>
+                <div class="gd-item"><img src="Images-opt/Hand-final.jpg" alt="Graphic Design"></div>
+                <div class="gd-item"><img src="Images-opt/LOGO.jpg" alt="Graphic Design"></div>
+                <!-- Row 2 -->
+                <div class="gd-item"><img src="Images-opt/SIC-PARVIS-MAGNA.jpg" alt="Graphic Design"></div>
+                <div class="gd-item"><img src="Images-opt/Whisper-fo-real.jpg" alt="Graphic Design"></div>
+                <div class="gd-item"><img src="Images-opt/abandoned.jpg" alt="Graphic Design"></div>
+                <!-- Row 3-4 -->
+                <div class="gd-item"><img src="Images-opt/Untitled-one.jpg" alt="Graphic Design"></div>
+                <div class="gd-item"><img src="Images-opt/billie-final.jpg" alt="Graphic Design"></div>
+                <div class="gd-item gd-tall"><img src="Images-opt/final-final.jpg" alt="Graphic Design"></div>
+                <div class="gd-item"><img src="Images-opt/WKND.jpg" alt="Graphic Design"></div>
+                <!-- Row 4 fill -->
+                <div class="gd-item"><img src="Images-opt/temple-drawing-finalfinal.jpg" alt="Graphic Design"></div>
+                <div class="gd-item"><img src="Images-opt/DSC_0056.jpg" alt="Graphic Design"></div>
+                <div class="gd-item"><img src="Images-opt/DSC_0062.jpg" alt="Graphic Design"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- ABOUT -->
     <section class="about-section" id="about">
         <div class="container">
@@ -1642,7 +1833,7 @@
                 <h2 class="about-title">Crafting stories<br>through motion.</h2>
             </div>
             <div class="about-grid reveal">
-                <img src="profile.png" alt="Argiris" class="about-image">
+                <img src="profile-opt.png" alt="Argiris" class="about-image">
                 <div class="about-content">
                     <p class="about-bio">
                         My name is <strong>Argiris</strong>, and I am a Video Editor and Motion Designer. I have worked with both local businesses in Greece and international clients, delivering high-quality video and motion content across a wide range of projects.
@@ -1682,7 +1873,7 @@
                     <div class="skill-details">
                         <div class="skill-name">Premiere Pro</div>
                         <div class="skill-level-label">Expert</div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="95"></div></div>
+                        <div class="skill-bar"><div class="skill-bar-fill" data-width="100"></div></div>
                     </div>
                 </div>
                 <!-- Photoshop -->
@@ -1825,15 +2016,15 @@
                     <p class="contact-description">
                         Have a project in mind or just want to say hello? I'm always open to new collaborations, creative challenges, and interesting conversations. Reach out and let's make something great.
                     </p>
-                    <a href="mailto:argiloun@gmail.com" class="contact-link">
+                    <a href="#" class="contact-link" id="copyEmail" data-email="argiloun@gmail.com">
                         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        argiloun@gmail.com
+                        <span>argiloun@gmail.com</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/argiris-lountras" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <a href="https://www.linkedin.com/in/argirislountras/" target="_blank" rel="noopener noreferrer" class="contact-link">
                         <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
                         Argiris Lountras
                     </a>
-                    <a href="https://www.fiverr.com/s/e62WjLj" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <a href="https://www.fiverr.com/strangrstudios" target="_blank" rel="noopener noreferrer" class="contact-link">
                         <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14z" fill="var(--accent)"/><path d="M6 19V9.5C6 7 7.5 5.5 10.5 5.5H13V9h-2c-1 0-1.5.5-1.5 1.5h8v8.5h-3.5v-5.5H9.5V19z" fill="var(--bg)"/><rect x="14.5" y="5.5" width="3.5" height="3.5" fill="var(--bg)"/></svg>
                         Fiverr
                     </a>
@@ -1859,8 +2050,14 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <p>&copy; 2026 Argiris. Made with <span>care</span> in Amsterdam.</p>
+        <p>&copy; 2026 Argiris. Made with <span>care</span>.</p>
     </footer>
+
+    <!-- GD LIGHTBOX -->
+    <div class="gd-lightbox" id="gdLightbox">
+        <img src="" alt="Graphic Design">
+    </div>
+
 
     <!-- VIDEO MODAL -->
     <div class="video-modal" id="videoModal">
@@ -1899,7 +2096,8 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (!target) return;
                 const start = window.scrollY;
-                const end = target.getBoundingClientRect().top + start;
+                const navOffset = this.getAttribute('href') === '#contact' ? 0 : 80;
+                const end = target.getBoundingClientRect().top + start - navOffset;
                 const duration = 900;
                 let startTime = null;
                 function ease(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
@@ -2083,6 +2281,49 @@
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+
+        // ── Copy Email ──
+        document.getElementById('copyEmail').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = this.dataset.email;
+            const span = this.querySelector('span');
+            const link = this;
+            navigator.clipboard.writeText(email).then(() => {
+                span.textContent = 'Copied to clipboard!';
+                link.classList.remove('copied');
+                void link.offsetWidth;
+                link.classList.add('copied');
+                setTimeout(() => {
+                    span.textContent = email;
+                    link.classList.remove('copied');
+                }, 2000);
+            });
+        });
+
+        // ── GD Lightbox ──
+        const gdLightbox = document.getElementById('gdLightbox');
+        const gdLightboxImg = gdLightbox.querySelector('img');
+
+        document.querySelectorAll('.gd-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.querySelector('img').src;
+                gdLightboxImg.src = src;
+                gdLightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        gdLightbox.addEventListener('click', () => {
+            gdLightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && gdLightbox.classList.contains('active')) {
+                gdLightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     </script>
 </body>
 </html>
